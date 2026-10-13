@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-poppins: var(--font-poppins-variable);
+  --font-roboto: var(--font-roboto-variable);
+
+  /* Brand Colors */
+  --color-brand: #92464c;
+  --color-brand-dark: #88272f;
+  --color-brand-light: #e4c8cb;
+
+  /* Text Colors */
+  --color-text-primary: #3c3c3c;
+  --color-text-secondary: #4b4b4b;
+  --color-text-muted: #555555;
+
+  /* Base Colors */
+  --color-page: #f5f5f5;
+
+  /* Card Colors */
+  --color-card: #fff7f7;
+  --color-card-border: #f0d4d4;
+
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1536px;
+}
+
+body {
+  font-family: var(--font-roboto-variable), sans-serif;
+}
+
+.font-arial {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+@layer components {
+  /* Common Card */
+  .card {
+    @apply box-border rounded-xl border border-card-border bg-card p-5;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply border-0 bg-brand-dark px-8 py-4 text-[0.9rem] font-black font-poppins uppercase text-white;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply border border-[#00000014] font-poppins bg-transparent px-8 py-4 text-[0.9rem] font-black uppercase text-brand-dark;
+  }
+
+  /* Discount Tag */
+  .discount-tag {
+    @apply absolute top-0 right-0 z-8 flex items-center justify-center rounded-[5px_15px_0_5px] bg-brand p-[5px_14px_5px_8px] text-xs font-medium text-white;
+  }
+
+  .bg-layer {
+    @apply fixed inset-0 z-40 bg-[#000000b3];
+  }
+
+  /* Common Shadow Card */
+  .common-card-shadow {
+    @apply w-full rounded-[10px] p-5 shadow-[0px_0px_16px_0px_#00000021];
+  }
+
+  /* Product Card */
+  .product-card-shadow {
+    @apply rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.16)];
+  }
+
+  /* Step Circle */
+  .step-circle {
+    @apply flex h-12 w-12 items-center justify-center rounded-full bg-[#8a2633] text-xl font-semibold text-white;
+  }
+
+  /* Common Heading  */
+  .items-info {
+    & h2 {
+      @apply mb-1 text-brand! text-[1.8rem] leading-normal font-bold! font-poppins;
+    }
+
+    & p:first-of-type {
+      @apply mt-0 text-[calc(1rem-1px)] font-bold uppercase tracking-[0.08em] text-text-muted;
+    }
+
+    & p:not(:first-of-type) {
+      @apply mt-3 mb-4 text-base font-normal tracking-normal text-text-primary whitespace-pre-line normal-case;
+    }
+  }
+}
+/* Bootstrap-style Container Breakpoints */
+
+.container-fluid {
+  max-width: 1500px;
+  padding-inline: 3rem;
+  margin-inline: auto;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  box-sizing: border-box;
+  max-width: 1320px;
+}
+
+/* Below 1400px */
+/* @media (max-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+} */
+
+/* Below 1200px */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Below 992px */
+@media (max-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Below 768px */
+@media (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* Below 576px */
+@media (max-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+
+  .container-fluid {
+    padding-inline: 1.25rem;
+  }
+}

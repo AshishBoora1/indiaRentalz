@@ -1,0 +1,96 @@
+# Dependencies
+**/node_modules/
+**/jspm_packages/
+**/bower_components/
+**/web_modules/
+
+# Next.js
+**/.next/
+**/out/
+
+# Build output
+**/dist/
+**/build/
+**/.output/
+**/.nuxt/
+**/.svelte-kit/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+
+# Caches
+.cache/
+.parcel-cache/
+.grunt/
+.npm/
+.eslintcache
+.stylelintcache
+.turbo/
+.vercel/
+.firebase/
+.serverless/
+.dynamodb/
+.fusebox/
+.temp/
+**/.vitepress/dist/
+**/.vitepress/cache/
+.docusaurus/
+
+# Package archives
+*.tgz
+
+# Node.js native build files
+lib-cov/
+build/Release/
+.lock-wscript
+
+# Yarn
+.yarn-integrity
+.pnp.*
+.yarn/*
+!.yarn/patches/
+!.yarn/plugins/
+!.yarn/releases/
+!.yarn/sdks/
+!.yarn/versions/
+
+# Local editor and OS files
+.vscode-test/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
