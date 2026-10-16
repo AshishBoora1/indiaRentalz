@@ -35,7 +35,6 @@ export default function ContentWithImage({
                 src={image}
                 className="w-full max-w-130 object-contain"
                 alt={heading}
-                priority
               />
             </div>
           </div>
@@ -75,18 +74,18 @@ export default function ContentWithImage({
             )}
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Link href={buttonLink} className="btn-primary rounded-md">
+            <div className="flex flex-wrap gap-4 max-sm:flex-col">
+              <Link href={buttonLink} className="btn-primary rounded-md max-sm:w-full text-center">
                 {buttonText}
               </Link>
 
-              <Link href={buttonLink2} className="btn-secondary rounded-md">
+              <Link href={buttonLink2} className="btn-secondary rounded-md max-sm:w-full text-center">
                 {buttonText2}
               </Link>
             </div>
 
             {/* Bullet Points */}
-            <div className="mt-8 grid grid-cols-3 gap-4 xl:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4 xl:grid-cols-4">
               {points.map((point, index) => (
                 <div
                   className="flex items-center gap-2"

@@ -1,0 +1,38 @@
+
+:root {
+  /* How It Works - Text Colors */
+  --color-howitworks-heading: #8b1f27;
+  --color-howitworks-accent: #b5121b;
+  --color-howitworks-text: #404040;
+  --color-howitworks-dark-text: #2b2b2b;
+
+  /* How It Works - Background Colors */
+  --color-howitworks-background: #fff9f9;
+}
+
+
+.card-shadow {
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.035);
+  border: 1px solid #f0d4d4;
+  border-radius: 0.75rem;
+  padding: 1.125rem 1.25rem;
+}
+
+.card-step-circle {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #fff5f5;
+  color: var(--color-howitworks-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  border: 1px solid #f0d4d4;
+}
+
+.linear-card-how-it-work {
+  background: linear-gradient(135deg, #fff2f2, #fffafa);
+}

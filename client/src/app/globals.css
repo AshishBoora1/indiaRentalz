@@ -45,12 +45,12 @@ body {
 
   /* Primary Button */
   .btn-primary {
-    @apply border-0 bg-brand-dark px-8 py-4 text-[0.9rem] font-black font-poppins uppercase text-white;
+    @apply border-0 bg-brand-dark cursor-pointer px-8 py-4 text-[0.9rem] font-black font-poppins uppercase text-white;
   }
 
   /* Secondary Button */
   .btn-secondary {
-    @apply border border-[#00000014] font-poppins bg-transparent px-8 py-4 text-[0.9rem] font-black uppercase text-brand-dark;
+    @apply border border-[#00000014] cursor-pointer font-poppins bg-transparent px-8 py-4 text-[0.9rem] font-black uppercase text-brand-dark;
   }
 
   /* Discount Tag */
@@ -92,6 +92,7 @@ body {
     }
   }
 }
+
 /* Bootstrap-style Container Breakpoints */
 
 .container-fluid {
@@ -108,14 +109,14 @@ body {
   max-width: 1320px;
 }
 
-/* Below 1400px */
-/* @media (max-width: 1440px) {
-  .container {
-    max-width: 1320px;
-  }
-} */
+.card-linear-bg {
+  background: linear-gradient(112deg, #fff7f7 0%, #fdecec 100%) !important;
+}
+.card-light-linear-bg {
+  background: linear-gradient(135deg, #fff2f2 0%, #fff8f8 55%, #ffffff 100%) !important;
+}
 
-/* Below 1200px */
+/* Below 1440px */
 @media (max-width: 1440px) {
   .container {
     max-width: 1140px;

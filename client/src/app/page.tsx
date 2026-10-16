@@ -14,7 +14,7 @@ import ProductSection from "./components/sections/ProductSection";
 import ContentWithImage from "./components/sections/ContentWithImage";
 import BannerSection from "./components/sections/BannerSection";
 import TestimonialsSection from "./components/sections/TestimonialsSection";
-import { products } from "./data/DummyData";
+import { categoryList, products } from "./data/DummyData";
 
 export default function Home() {
   const settings: Settings = {
@@ -69,26 +69,29 @@ export default function Home() {
         <div className="container">
           <div className="items-info text-center">
             <h2>Find the Right Technology for Every Requirement</h2>
-            <p className="font-bold capitalize text-text-primary text-base tracking-normal">
+            <p className="text-base font-bold capitalize tracking-normal text-text-primary">
               Explore laptops, MacBooks, desktops, workstations and enterprise
               IT equipment available on flexible rental plans.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
-            {[1, 2, 3, 4, 5, 6].map((category) => (
-              <div
-                className="flex flex-col items-center justify-center gap-2 px-1.5"
-                key={category}
-              >
-                <Image
-                  src={categoriesLaptopImage}
-                  alt="Laptop Category"
-                  priority
-                  className="w-[3.3rem] h-[3.3rem] object-cover"
-                />
-                <span className=" text-[0.8rem] leading-[1.2rem] text-text-secondary font-semibold!">
-                  Laptops
-                </span>
+
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {categoryList.map((category) => (
+              <div className="px-1.5" key={category.categories}>
+                <Link
+                  href={`/shop/${category.categories}`}
+                  className="mx-auto flex w-fit flex-col items-center justify-center gap-2"
+                >
+                  <Image
+                    src={categoriesLaptopImage}
+                    alt={category.title}
+                    className="h-[3.3rem] w-[3.3rem] object-cover"
+                  />
+
+                  <span className="text-[0.8rem] font-semibold leading-[1.2rem] text-text-secondary">
+                    {category.title}
+                  </span>
+                </Link>
               </div>
             ))}
           </div>

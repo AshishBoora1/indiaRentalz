@@ -7,7 +7,6 @@ export interface ProductCardProps {
   description: string;
   price: number | string;
   badge?: string;
-  index?: number;
   deliveryText?: string;
 }
 
@@ -40,4 +39,16 @@ export interface ContentWithImageProps {
   swap?: string;
   cardsData?: any[];
   points: string[];
+}
+
+export interface ProductListPopProps {
+  productsdata: ProductData[];
+  productname: string;
+  onProductNameChange: (value: string) => void;
+  onClose: () => void;
+}
+
+export interface LocationPopupProps {
+  onClose: () => void;
+  onhandleGetCity: (e: string) => void;
 }

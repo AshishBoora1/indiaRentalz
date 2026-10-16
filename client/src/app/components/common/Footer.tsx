@@ -14,14 +14,13 @@ function Footer() {
   return (
     <footer className="bg-[#282828] pt-10">
       <div className=" container">
-        <div className=" grid grid-cols-4 pb-10">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 lg:grid-cols-4 pb-10">
           <div>
             <Image
               width={200}
               height={68}
               src={logoLight}
               alt="logo"
-              priority
             />
             <h5 className=" capitalize my-8 font-roboto text-white">
               sunsoft erp solutions pvt ltd

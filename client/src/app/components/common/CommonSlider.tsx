@@ -1,4 +1,3 @@
-
 "use client";
 
 import Slider, { Settings } from "react-slick";
@@ -13,7 +12,7 @@ export default function CommonSlider({
   slidesToShow = 3,
 }: CommonSliderProps) {
   const settings: Settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow,
@@ -28,9 +27,10 @@ export default function CommonSlider({
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
+          arrows: true,
         },
       },
     ],
