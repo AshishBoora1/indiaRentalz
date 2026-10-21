@@ -93,24 +93,24 @@ export const quickLinks = [
   { label: "Delivery Policy", href: "/deliverypolicy" },
   {
     label: "Documentation Policy",
-    href: "#",
+    href: "/documentationpolicy",
   },
   {
     label: "Payment and Refund Policy",
-    href: "#",
+    href: "/paymentandrefundpolicy",
   },
-  { label: "FAQs", href: "#" },
+  { label: "FAQs", href: "/faqs" },
   {
     label: "Terms of Services",
-    href: "#",
+    href: "/termsofservices",
   },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Customer Service", href: "#" },
+  { label: "Privacy Policy", href: "/privacypolicy" },
+  { label: "Customer Service", href: "/https://support.sunsoft.in/" },
   {
     label: "Investors Relationship",
-    href: "#",
+    href: "/investorsrelationship",
   },
-  { label: "Career", href: "#" },
+  { label: "Career", href: "/career" },
   { label: "Blogs", href: "#" },
 ];
 

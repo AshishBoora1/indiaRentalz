@@ -1,0 +1,22 @@
+:root {
+  /* Brand Colors */
+  --color-accent: #8b1f27;
+  --color-light-accent: #b5121b;
+
+  --color-text-dark: #2b2b2b;
+  --color-text-label: #5d2529;
+  --color-text-table-heading: #5d2529;
+
+  /* Background Colors */
+  --bg-clr-card: #fff9f9;
+  --color-delivery-highlight: #fff4f4;
+
+  /* Border Colors */
+  --color-delivery-border: #efd4d6;
+  --color-delivery-divider: #f3e3e4;
+
+  --color-border-light: #f1dddd;
+
+  /* Number / List Colors */
+  --color-list-marker: #b5121b;
+}

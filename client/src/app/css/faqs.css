@@ -1,0 +1,18 @@
+:root {
+  /* Brand Colors */
+  --color-accent: #8b1f27;
+  --color-light-accent: #b5121b;
+
+  --color-text-dark: #3a2a2b;
+  --color-text-paragraph: #555;
+
+  /* Background Colors */
+  --bg-clr-card: #fffafa;
+  --color-delivery-highlight: #fff4f4;
+
+  /* Border Colors */
+  --color-delivery-border: #e9bfc2;
+  --color-faqs-border: #f7e7e8;
+  --color-faqs-border-main: #efd4d6;
+  --color-border-light: #f1dddd;
+}

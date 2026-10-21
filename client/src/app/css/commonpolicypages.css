@@ -1,0 +1,28 @@
+h1 {
+  font-size: 2.125rem !important;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 1.5rem !important;
+}
+
+h3 {
+  font-size: 1.375rem !important;
+}
+
+h4 {
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+}
+
+h6 {
+  font-size: 0.875rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+}

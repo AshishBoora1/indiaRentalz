@@ -77,8 +77,8 @@ function Footer() {
               </h4>
 
               <ul className="flex flex-col gap-[0.7rem]">
-                {column.links.map((link) => (
-                  <li key={link.href}>
+                {column.links.map((link , i) => (
+                  <li key={i}>
                     <Link
                       href={link.href}
                       className="font-roboto text-[#ffffffbf] font-semibold text-base"

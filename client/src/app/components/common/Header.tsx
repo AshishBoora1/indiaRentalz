@@ -83,7 +83,8 @@ function Header() {
             <Image
               className=" max-lg:hidden h-[5vh] object-contain max-w-fit max-h-10!"
               src={darkLogo}
-              alt="Logo"
+              alt="IndiaRentalz Logo"
+              loading="eager"
             />
             <Image
               className=" lg:hidden"
@@ -91,6 +92,7 @@ function Header() {
               alt="Logo"
               width={41}
               height={49}
+              loading="eager"
             />
           </Link>
 

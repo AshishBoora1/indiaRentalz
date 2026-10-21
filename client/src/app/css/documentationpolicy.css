@@ -1,0 +1,62 @@
+:root {
+  /* Brand Colors */
+  --color-accent: #8b1f27;
+  --color-light-accent: #b5121b;
+
+  --color-text-dark: #2b2b2b;
+  --color-text-label: #5d2529;
+  --color-text-paragraph: #666;
+  --color-text-table-heading: #5d2529;
+
+  /* Background Colors */
+  --bg-clr-card: #fff9f9;
+  --bg-clr-card-highlight: #fff5f5;
+  --color-delivery-highlight: #fff4f4;
+
+  /* Border Colors */
+  --color-delivery-border: #efd4d6;
+  --color-border-light: #f1dddd;
+
+  /* Number / List Colors */
+  --color-list-marker: #b5121b;
+}
+
+.doc-terms {
+  counter-reset: terms;
+}
+
+.doc-terms li {
+  counter-increment: terms;
+  position: relative;
+  list-style: none;
+}
+
+.doc-terms li::before {
+  content: counter(terms);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-list-marker);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media (max-width: 992px) {
+  tr {
+    display: flex !important;
+    width: 100%;
+    flex-direction: column !important;
+  }
+
+  th,
+  td {
+    width: 100%;
+  }
+}
