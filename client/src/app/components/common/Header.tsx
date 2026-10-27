@@ -158,7 +158,7 @@ function Header() {
 
           <a
             href="#"
-            className="btn-primary flex text-base! px-4 py-1.5 font-roboto items-center gap-1 rounded-full font-normal capitalize"
+            className="btn-primary flex text-xs sm:text-base! px-4 py-2.5 sm:py-1.5 font-roboto items-center gap-1 rounded-full font-normal capitalize"
           >
             <UsersRound size={17} className="font-normal" />
             Switch to Enterprise

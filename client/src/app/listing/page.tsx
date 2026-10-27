@@ -43,7 +43,7 @@ function Page() {
               <span className=" text-[#65736d] block text-(length:--fs-10) font-bold uppercase tracking-[0.4px]">
                 Selected delivery city
               </span>
-              <span className="text-[#24503d] block text-(length:--fs-14) mt-1">
+              <span className="text-[#24503d] block font-extrabold text-(length:--fs-16) mt-1">
                 {selectedCity}
               </span>
               <span className=" text-[#68756f] block text-(length:--fs-10) mt-1">

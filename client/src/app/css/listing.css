@@ -39,26 +39,3 @@ button,
 a {
   font-family: var(--font-primary) !important;
 }
-
-/* new page */
-
-.journey-card:not(:last-child):after {
-  content: "›";
-  position: absolute;
-  right: -8px;
-  top: 54px;
-  width: 16px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  color: var(--color-primary);
-  font-size: 20px;
-  font-weight: 900;
-  z-index: 3;
-}
-
-@media (max-width: 992px) {
-  .journey-card:not(:last-child):after {
-    content: "";
-  }
-}
