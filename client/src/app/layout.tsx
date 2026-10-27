@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins, Roboto } from "next/font/google";
+import { Inter, Poppins, Roboto } from "next/font/google";
 import "./globals.css";
-import "./css/headingSize.css"
-import "./css/slider.css"
+import "./css/headingSize.css";
+import "./css/slider.css";
 import ScrollAnimation from "./components/common/ScrollAnimation";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
+import { AppProvider } from "./context/AppContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-variable",
@@ -21,6 +22,12 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700" , "800" , "900"],
+});
+
 export const metadata: Metadata = {
   title: "Indiarentalz",
   description:
@@ -31,12 +38,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${roboto.variable} h-full antialiased`}
+      className={`${poppins.variable} ${roboto.variable} ${inter.variable} h-full antialiased`}
     >
       <body>
         <ScrollAnimation />
-        <Header />
-        {children}
+        <AppProvider>
+          <Header />
+          {children}
+        </AppProvider>
         <Footer />
       </body>
     </html>

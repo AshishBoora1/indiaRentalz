@@ -2,7 +2,7 @@ import Image from "next/image";
 import termsofservices from "@/../public/images/banner/about-us.png";
 import "../css/privacypolicy.css";
 import "../css/commonpolicypages.css";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -789,4 +789,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

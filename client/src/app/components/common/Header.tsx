@@ -17,12 +17,13 @@ import { useEffect, useRef, useState } from "react";
 import ProductListPop from "../ui/ProductListPop";
 import { products } from "@/app/data/DummyData";
 import Link from "next/link";
+import { useAppContext } from "@/app/context/AppContext";
 
 function Header() {
   const [showlocationpopup, setShowLocationPopup] = useState(false);
   const [showproductpopup, setShowProductPopup] = useState(false);
   const [productname, setProductName] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
+ const { selectedCity, setSelectedCity } = useAppContext();
 
   const searchPopupRef = useRef<HTMLDivElement>(null);
   const mobileSearchButtonRef = useRef<HTMLButtonElement>(null);
@@ -61,14 +62,6 @@ function Header() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);
-
-  useEffect(() => {
-    const savedCity = localStorage.getItem("selectedCity");
-
-    if (savedCity) {
-      setSelectedCity(savedCity);
-    }
   }, []);
 
   function getcity(cityname: string) {

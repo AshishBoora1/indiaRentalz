@@ -3,7 +3,7 @@ import howitworks from "@/../public/images/banner/howitworks-side.jpg";
 import "../css/howitworks.css";
 import "../css/commonpolicypages.css";
 import Link from "next/link";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -314,4 +314,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

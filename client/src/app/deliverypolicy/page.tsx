@@ -2,7 +2,7 @@ import Image from "next/image";
 import deliverypolicyside from "@/../public/images/banner/deliverypolicy-side.jpg";
 import "../css/deliverypolicy.css";
 import "../css/commonpolicypages.css";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -610,4 +610,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

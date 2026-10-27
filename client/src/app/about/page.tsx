@@ -2,7 +2,7 @@ import Image from "next/image";
 import aboutus from "@/../public/images/banner/about-us-side.jpg";
 import "../css/aboutus.css";
 import "../css/commonpolicypages.css";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -221,7 +221,7 @@ function page() {
                         Making technology access simpler
                       </h3>
                       <p className="text-(--color-light-primary) leading-[1.75]">
-                        To become India's most trusted and customer-friendly
+                        To become India most trusted and customer-friendly
                         technology access platform by making Technology Without
                         Ownership simple, transparent, reliable and accessible
                         across India.
@@ -276,4 +276,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

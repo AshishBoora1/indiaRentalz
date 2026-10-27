@@ -135,3 +135,100 @@ export function RentalCycleIcon() {
     </svg>
   );
 }
+export function ProductImage() {
+  return (
+    <svg
+      className=" max-w-57.5 w-[78%] block"
+      viewBox="0 0 560 360"
+      fill="none"
+    >
+      <rect
+        x="92"
+        y="34"
+        width="376"
+        height="246"
+        rx="15"
+        fill="white"
+        stroke="#a86268"
+        strokeWidth="7"
+      ></rect>
+      <rect
+        x="114"
+        y="56"
+        width="332"
+        height="202"
+        rx="6"
+        fill="#f7e7e9"
+      ></rect>
+      <path
+        d="M42 292H518L482 330H78L42 292Z"
+        fill="white"
+        stroke="#a86268"
+        strokeWidth="7"
+      ></path>
+      <text
+        x="280"
+        y="170"
+        textAnchor="middle"
+        fontSize="26"
+        fontFamily="Arial"
+        fontWeight="700"
+        fill="#7b2027"
+      >
+        IndiaRentalz
+      </text>
+    </svg>
+  );
+}
+
+export function ProductInfoImage() {
+  return (
+    <svg viewBox="0 0 560 360" fill="none" aria-hidden="true" className=" w-[80%] max-w-117.5">
+      <rect
+        x="92"
+        y="34"
+        width="376"
+        height="246"
+        rx="15"
+        fill="white"
+        stroke="#a86268"
+        strokeWidth="7"
+      ></rect>
+      <rect
+        x="114"
+        y="56"
+        width="332"
+        height="202"
+        rx="6"
+        fill="#f7e7e9"
+      ></rect>
+      <path
+        d="M42 292H518L482 330H78L42 292Z"
+        fill="white"
+        stroke="#a86268"
+        strokeWidth="7"
+      ></path>
+      <text
+        x="280"
+        y="158"
+        textAnchor="middle"
+        fontSize="28"
+        fontFamily="Arial"
+        fontWeight="700"
+        fill="#7a2026"
+      >
+        IndiaRentalz
+      </text>
+      <text
+        x="280"
+        y="190"
+        textAnchor="middle"
+        fontSize="15"
+        fontFamily="Arial"
+        fill="#9b777a"
+      >
+        Rent. Deploy. Scale. Upgrade.
+      </text>
+    </svg>
+  );
+}

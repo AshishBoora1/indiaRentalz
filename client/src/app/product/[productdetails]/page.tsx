@@ -12,7 +12,7 @@ import {
 import { faqs, specifications } from "@/app/data/DummyData";
 import { useState } from "react";
 
-function page() {
+function Page() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
     <main>
@@ -303,4 +303,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

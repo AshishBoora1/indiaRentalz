@@ -1,0 +1,7 @@
+.location-content-parent p {
+  font-size: 1rem;
+  font-family: var(--font-poppins);
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}

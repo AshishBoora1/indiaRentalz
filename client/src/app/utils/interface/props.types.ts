@@ -37,7 +37,7 @@ export interface ContentWithImageProps {
   buttonLink2: string;
   showcard?: boolean;
   swap?: string;
-  cardsData?: any[];
+  cardsData?: [];
   points: string[];
 }
 

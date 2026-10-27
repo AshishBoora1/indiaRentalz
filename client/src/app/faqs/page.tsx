@@ -5,7 +5,7 @@ import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { faqData } from "../data/aboutFaqData";
 
-function page() {
+function Page() {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   const toggleFaq = (id: string) => {
@@ -129,4 +129,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

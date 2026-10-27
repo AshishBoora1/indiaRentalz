@@ -3,7 +3,7 @@ import career from "@/../public/images/banner/about-us.png";
 import "../css/career.css";
 import "../css/commonpolicypages.css";
 import Link from "next/link";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -312,4 +312,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

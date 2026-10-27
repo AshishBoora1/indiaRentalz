@@ -5,7 +5,7 @@ import ProductCard from "../templates/ProductCard";
 import productImage from "@/../public/images/home/product-image.webp";
 import { ChevronRight } from "lucide-react";
 
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -35,10 +35,10 @@ function page() {
               {products.length}{" "}
             </span>
             results for
-            <em className=" font-bold opacity-100 text-black"> "Shop" </em>
+            <em className=" font-bold opacity-100 text-black"> `Shop` </em>
           </div>
           <div>
-            <div className="mb-12 py-6 hidden grid-cols-2 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4">
+            <div className="mb-12 py-6 grid-cols-2 gap-4 md:grid md:grid-cols-3 lg:grid-cols-4">
               {products.map((product, index) => (
                 <div key={index}>
                   <ProductCard
@@ -59,4 +59,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -1,0 +1,121 @@
+:root {
+  /* Font Sizes */
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+  --fs-30: 30px;
+  --fs-34: 34px;
+  --fs-46: 46px;
+
+  /* Primary Colors */
+  --clr-primary: #b5121b;
+  --clr-primary-dark: #8b1f27;
+  --clr-primary-light: #fff1f2;
+  --clr-primary-soft: #fff5f5;
+  --clr-primary-border: #e7b9bd;
+
+  /* Text Colors */
+  --clr-heading: #3f1f22;
+  --clr-text: #222222;
+  --clr-text-dark: #161616;
+  --clr-text-primary: #333333;
+  --clr-text-muted: #666666;
+  --clr-text-light: #777777;
+
+  /* Background Colors */
+  --clr-page-bg: #f7f7f7;
+  --clr-map-bg: #ececec;
+
+  /* Border Colors */
+  --clr-border: #e9e1e1;
+  --clr-border-light: #eeeeee;
+  --clr-border-input: #d9d9d9;
+  --clr-border-neutral: #dddddd;
+}
+
+/* Headings */
+h1 {
+  font-size: var(--fs-46);
+}
+
+h2 {
+  font-size: var(--fs-34);
+}
+
+h3 {
+  font-size: var(--fs-24);
+}
+
+h4 {
+  font-size: var(--fs-20);
+}
+
+h6 {
+  font-size: var(--fs-14);
+}
+
+/* Custom Heading */
+.h4 {
+  font-size: var(--fs-30) !important;
+}
+
+/* Paragraphs */
+p {
+  font-size: var(--fs-16);
+}
+
+/* Labels */
+.contact-form label {
+  font-size: var(--fs-12);
+}
+
+/* Inputs */
+.contact-form input {
+  height: 44px;
+  font-size: var(--fs-12);
+}
+
+/* Contact Hero */
+.contact-hero p {
+  font-size: var(--fs-18) !important;
+}
+
+.contact-hero::after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -120px;
+  width: 430px;
+  height: 430px;
+  border: 76px solid var(--clr-primary-ring);
+  border-radius: 50%;
+}
+
+/* Contact Channel */
+.contact-channel p {
+  font-size: var(--fs-12) !important;
+}
+
+/* Contact Card Header */
+.contact-card-head p {
+  font-size: var(--fs-12) !important;
+}
+
+/* Location Map */
+.location-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+  :root {
+    --fs-34: 30px;
+    --fs-46: 34px;
+  }
+}

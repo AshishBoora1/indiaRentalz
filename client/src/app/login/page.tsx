@@ -1,7 +1,7 @@
 import Image from "next/image";
 import login from "@/../public/images/login/login.png";
 import { WhatsappIcon } from "../data/Icons";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -47,4 +47,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

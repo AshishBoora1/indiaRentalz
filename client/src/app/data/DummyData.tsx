@@ -87,7 +87,7 @@ export const testimonials = [
 ];
 
 export const quickLinks = [
-  { label: "Contact US", href: "#" },
+  { label: "Contact US", href: "/contact" },
   { label: "About US", href: "/about" },
   { label: "How it Works", href: "/howitworks" },
   { label: "Delivery Policy", href: "/deliverypolicy" },
@@ -117,74 +117,74 @@ export const quickLinks = [
 export const laptopLinks = [
   {
     label: "Laptop On Rent in Gurgaon",
-    href: "#",
+    href: "/laptop-on-rent-gurgaon",
   },
   {
     label: "Laptop On Rent in Noida",
-    href: "#",
+    href: "/laptop-on-rent-noida",
   },
   {
     label: "Laptop On Rent in Mohali",
-    href: "#",
+    href: "/laptop-on-rent-mohali",
   },
   {
     label: "Laptop On Rent in Delhi",
-    href: "#",
+    href: "/laptop-on-rent-delhi",
   },
   {
     label: "Laptop On Rent in Chandigarh",
-    href: "#",
+    href: "/laptop-on-rent-chandigarh",
   },
   {
     label: "Laptop On Rent in Faridabad",
-    href: "#",
+    href: "/laptop-on-rent-faridabad",
   },
   {
     label: "Laptop On Rent in Bengaluru",
-    href: "#",
+    href: "/laptop-on-rent-bengaluru",
   },
   {
     label: "Laptop On Rent in Pune",
-    href: "#",
+    href: "/laptop-on-rent-pune",
   },
   {
     label: "Laptop On Rent in Hyderabad",
-    href: "#",
+    href: "/laptop-on-rent-hyderabad",
   },
   {
     label: "Laptop On Rent in Mumbai",
-    href: "#",
+    href: "/laptop-on-rent-mumbai",
   },
 ];
 
 export const macbookLinks = [
   {
     label: "Macbook On Rent in Delhi",
-    href: "#",
+    href: "/mackbook-on-rent-in-mumbai",
   },
   {
     label: "Macbook On Rent in Gurgaon",
-    href: "#",
+    href: "/mackbook-on-rent-in-gurgaon",
   },
   {
     label: "Macbook On Rent in Noida",
-    href: "#",
+    href: "/mackbook-on-rent-in-noida",
   },
   {
     label: "Macbook On Rent in Bengaluru",
-    href: "#",
+    href: "/mackbook-on-rent-in-bengaluru",
   },
   {
     label: "Macbook On Rent in Pune",
-    href: "#",
+    href: "/mackbook-on-rent-in-pune",
   },
   {
     label: "Macbook On Rent in Hyderabad",
-    href: "#",
+    href: "/mackbook-on-rent-in-hyderabad",
   },
   {
     label: "Macbook On Rent in Mumbai",
-    href: "#",
+    href: "/mackbook-on-rent-in-mumbai",
   },
 ];
 

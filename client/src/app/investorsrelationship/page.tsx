@@ -2,7 +2,7 @@ import Image from "next/image";
 import investorsrelationship from "@/../public/images/banner/investorsrelationship-side.jpg";
 import "../css/investorsrelationship.css";
 import "../css/commonpolicypages.css";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -501,4 +501,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

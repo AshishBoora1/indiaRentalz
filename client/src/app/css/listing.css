@@ -1,0 +1,64 @@
+:root {
+  /* Font Sizes */
+  --fs-9: 9px;
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-23: 23px;
+  --fs-34: 34px;
+
+  /* Primary Brand Colors */
+  --color-primary: #b5121b;
+  --color-primary-dark: #7b2027;
+  --color-primary-light: #fff0f1;
+
+  /* Text Colors */
+  --color-heading: #242124;
+  --color-text: #5f5759;
+  --clr-text-secondary: #776f72;
+
+  /* Border Colors */
+  --color-border: #ead7da;
+  --color-border-light: #f2e5e6;
+
+  --font-primary: var(--font-inter), "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+a {
+  font-family: var(--font-primary) !important;
+}
+
+/* new page */
+
+.journey-card:not(:last-child):after {
+  content: "›";
+  position: absolute;
+  right: -8px;
+  top: 54px;
+  width: 16px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 3;
+}
+
+@media (max-width: 992px) {
+  .journey-card:not(:last-child):after {
+    content: "";
+  }
+}

@@ -2,7 +2,7 @@ import Image from "next/image";
 import paymentandrefundpolicy from "@/../public/images/banner/paymentandrefundpolicy-side.jpg";
 import "../css/paymentandrefundpolicy.css";
 import "../css/commonpolicypages.css";
-function page() {
+function Page() {
   return (
     <main>
       <section>
@@ -513,4 +513,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
