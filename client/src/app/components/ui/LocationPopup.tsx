@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import location1 from "@/../public/images/common/location1.png";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { SearchIcon, X } from "lucide-react";
 import { cities } from "@/app/data/DummyData";
 import { LocationPopupProps } from "@/app/utils/interface/props.types";
@@ -11,14 +11,6 @@ function LocationPopup({ onClose, onhandleGetCity }: LocationPopupProps) {
   const [citylistshow, setCityListShow] = useState(false);
   const [showsearch, setShowsearch] = useState(false);
   const [city, setCity] = useState("");
-
-  useEffect(() => {
-    const savedCity = localStorage.getItem("selectedCity");
-
-    if (savedCity) {
-      setCity(savedCity);
-    }
-  }, []);
 
   const handleCitySelect = (selectedCity: string) => {
     setCity(selectedCity);

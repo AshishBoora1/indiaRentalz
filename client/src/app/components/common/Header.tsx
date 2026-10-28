@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+
 import darkLogo from "@/../public/images/common/logoDark.png";
 import mobileLogo from "@/../public/images/common/mobile-logo.png";
 import LocationIcon from "@/app/data/Icons";
@@ -12,18 +15,40 @@ import {
   House,
   LayoutGrid,
 } from "lucide-react";
-import LocationPopup from "../ui/LocationPopup";
-import { useEffect, useRef, useState } from "react";
-import ProductListPop from "../ui/ProductListPop";
+
 import { products } from "@/app/data/DummyData";
-import Link from "next/link";
 import { useAppContext } from "@/app/context/AppContext";
+import LocationPopup from "../ui/LocationPopup";
+import ProductListPop from "../ui/ProductListPop";
+import StartedPopup from "../ui/StartedPopup";
+
+// Isse localStorage check hone se pehle popup render nahi hoga.
+function subscribeHydration() {
+  return () => {};
+}
+
+function getClientHydrationSnapshot() {
+  return true;
+}
+
+function getServerHydrationSnapshot() {
+  return false;
+}
 
 function Header() {
   const [showlocationpopup, setShowLocationPopup] = useState(false);
+  const [locationPopupDismissed, setLocationPopupDismissed] = useState(false);
   const [showproductpopup, setShowProductPopup] = useState(false);
+  const [showstartedpopup, setShowStartedPopup] = useState(false);
   const [productname, setProductName] = useState("");
- const { selectedCity, setSelectedCity } = useAppContext();
+
+  const { selectedCity, setSelectedCity } = useAppContext();
+
+  const isHydrated = useSyncExternalStore(
+    subscribeHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
 
   const searchPopupRef = useRef<HTMLDivElement>(null);
   const mobileSearchButtonRef = useRef<HTMLButtonElement>(null);
@@ -65,24 +90,37 @@ function Header() {
   }, []);
 
   function getcity(cityname: string) {
-    if (cityname) setSelectedCity(cityname);
+    if (!cityname) return;
+
+    setSelectedCity(cityname);
+
+    const savedSelection = localStorage.getItem("startedPopupSelection");
+
+    if (!savedSelection) {
+      setShowStartedPopup(true);
+    }
   }
+
+  const shouldShowLocationPopup =
+    showlocationpopup ||
+    (isHydrated && !selectedCity && !locationPopupDismissed);
 
   return (
     <header className="container-fluid relative">
       <nav className="flex items-center justify-between py-6 gap-2">
         <div className="flex items-center gap-[1vw]">
-          <Link href={"/"}>
+          <Link href="/">
             <Image
-              className=" max-lg:hidden h-[5vh] object-contain max-w-fit max-h-10!"
+              className="max-lg:hidden h-[5vh] object-contain max-w-fit max-h-10!"
               src={darkLogo}
               alt="IndiaRentalz Logo"
               loading="eager"
             />
+
             <Image
-              className=" lg:hidden"
+              className="lg:hidden"
               src={mobileLogo}
-              alt="Logo"
+              alt="IndiaRentalz Logo"
               width={41}
               height={49}
               loading="eager"
@@ -99,6 +137,7 @@ function Header() {
               color="currentColor"
               className="text-text-secondary"
             />
+
             {selectedCity && <span>{selectedCity}</span>}
           </button>
         </div>
@@ -106,8 +145,8 @@ function Header() {
         <div className="flex items-center justify-between gap-[3vw] lg:gap-[2vw]">
           {/* Desktop Search */}
           <div
-            className="hidden lg:flex items-center justify-between gap-2 border border-[#0000002d] rounded-[0.625rem] p-2 w-[18rem] xl:w-[20rem]"
             ref={searchPopupRef}
+            className="hidden lg:flex items-center justify-between gap-2 border border-[#0000002d] rounded-[0.625rem] p-2 w-[18rem] xl:w-[20rem]"
           >
             <input
               className="bg-transparent border-0 focus:outline-none text-black! placeholder:text-[#6c757d] w-full"
@@ -141,14 +180,14 @@ function Header() {
               size={24}
               className="text-text-primary scale-x-[-1]"
             />
+
             <div className="step-circle h-5 w-5 text-[0.7rem] -right-3 -top-3 absolute">
               1
             </div>
           </div>
 
           <div className="max-md:hidden">
-            <Link href={"/login"}>
-              {" "}
+            <Link href="/login">
               <CircleUserRound
                 size={24}
                 className="text-text-primary cursor-pointer"
@@ -156,33 +195,34 @@ function Header() {
             </Link>
           </div>
 
-          <a
-            href="#"
+          <Link
+            href="/enterprise"
             className="btn-primary flex text-xs sm:text-base! px-4 py-2.5 sm:py-1.5 font-roboto items-center gap-1 rounded-full font-normal capitalize"
           >
             <UsersRound size={17} className="font-normal" />
             Switch to Enterprise
-          </a>
+          </Link>
         </div>
 
-        {/* mobile bar */}
-
+        {/* Mobile Bottom Navigation */}
         <div className="bg-white flex justify-around gap-1.5 items-center w-full fixed bottom-0 left-0 z-50 shadow-[0_4px_24px_#00000040] px-2 py-4 md:hidden">
-          <Link href={"#"}>
+          <Link href="/">
             <House
               size={24}
               color="currentColor"
               className="text-text-secondary"
             />
           </Link>
-          <Link href={"#"}>
+
+          <Link href="#">
             <LayoutGrid
               size={24}
               color="currentColor"
               className="text-text-secondary"
             />
           </Link>
-          <Link href={"/login"}>
+
+          <Link href="/login">
             <CircleUserRound
               size={24}
               color="currentColor"
@@ -191,15 +231,18 @@ function Header() {
           </Link>
         </div>
 
-        {/* popups */}
-
-        {showlocationpopup && (
+        {/* Location Popup */}
+        {shouldShowLocationPopup && (
           <LocationPopup
-            onClose={() => setShowLocationPopup(false)}
+            onClose={() => {
+              setShowLocationPopup(false);
+              setLocationPopupDismissed(true);
+            }}
             onhandleGetCity={getcity}
           />
         )}
 
+        {/* Product Search Popup */}
         {showproductpopup && (
           <ProductListPop
             productsdata={filteredProducts}
@@ -207,6 +250,11 @@ function Header() {
             onClose={() => setShowProductPopup(false)}
             onProductNameChange={setProductName}
           />
+        )}
+
+        {/* Started Popup */}
+        {showstartedpopup && (
+          <StartedPopup onClose={() => setShowStartedPopup(false)} />
         )}
       </nav>
     </header>

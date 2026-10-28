@@ -1,3 +1,10 @@
+export const states = [
+  "Delhi",
+  "Chandigarh",
+  "Haryana",
+  "Punjab",
+];
+
 export const products = [
   {
     id: 1,

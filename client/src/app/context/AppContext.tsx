@@ -22,7 +22,7 @@ function getServerCity() {
   return "";
 }
 
-function subscribe(callback: () => void) {
+function subscribeToCity(callback: () => void) {
   window.addEventListener(CITY_EVENT, callback);
   window.addEventListener("storage", callback);
 
@@ -34,13 +34,18 @@ function subscribe(callback: () => void) {
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const selectedCity = useSyncExternalStore(
-    subscribe,
+    subscribeToCity,
     getCity,
     getServerCity,
   );
 
   const setSelectedCity = useCallback((city: string) => {
-    localStorage.setItem(STORAGE_KEY, city);
+    if (city) {
+      localStorage.setItem(STORAGE_KEY, city);
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
     window.dispatchEvent(new Event(CITY_EVENT));
   }, []);
 

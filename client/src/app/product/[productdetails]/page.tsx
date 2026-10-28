@@ -11,9 +11,17 @@ import {
 } from "@/app/data/Icons";
 import { faqs, specifications } from "@/app/data/DummyData";
 import { useState } from "react";
+import AddOnsPopup from "@/app/components/ui/AddOnsPopup";
+import { addons } from "@/app/data/productsdetails.data";
+import { AddOn } from "@/app/utils/interface/product.data.types";
 
 function Page() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleContinue = (selectedAddons: AddOn[]) => {
+    console.log("Selected add-ons:", selectedAddons);
+  };
   return (
     <main>
       <section>
@@ -151,7 +159,10 @@ function Page() {
                       (Gurugram)
                     </span>
                     in<span className="font-black! px-1">1-2</span>Days
-                    <button className=" flex justify-center items-center gap-2 normal-case! font-semibold! btn-primary mt-2 w-full">
+                    <button
+                      onClick={() => setShowPopup(true)}
+                      className=" flex justify-center items-center gap-2 normal-case! font-semibold! btn-primary mt-2 w-full"
+                    >
                       <ShoppingCart size={20} />
                       Add to Cart
                     </button>
@@ -299,6 +310,14 @@ function Page() {
           </div>
         </div>
       </section>
+
+      {showPopup && (
+        <AddOnsPopup
+          addons={addons}
+          onClose={() => setShowPopup(false)}
+          onContinue={handleContinue}
+        />
+      )}
     </main>
   );
 }

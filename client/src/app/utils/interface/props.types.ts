@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-import { ProductData } from "./product.data.types";
+import { AddOn, ProductData } from "./product.data.types";
 
 export interface ProductCardProps {
   image: string | StaticImageData;
@@ -52,3 +52,12 @@ export interface LocationPopupProps {
   onClose: () => void;
   onhandleGetCity: (e: string) => void;
 }
+export interface StartedPopupProps {
+  onClose: () => void;
+}
+
+export interface AddOnsPopupProps {
+  addons: AddOn[];
+  onClose: () => void;
+  onContinue: (selectedAddons: AddOn[]) => void;
+};
