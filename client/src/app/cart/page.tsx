@@ -1,41 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import "../css/cart.css";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Check,
-  Trash2,
-} from "lucide-react";
+import { ArrowRight, Trash2, X } from "lucide-react";
 import Image from "next/image";
 import mouseImage from "@/../public/images/products/mouse.jpg";
 import productImage from "@/../public/images/home/product-image.webp";
-
-const products = [
-  {
-    id: 1,
-    name: "Laptop i3 8th/10th Gen-8GB RAM-256 GB SSD-14/15 inch screen",
-    rent: 1600,
-    deposit: 7500,
-    quantity: 1,
-    type: "laptop",
-  },
-  {
-    id: 2,
-    name: "Logitech M221 Wireless Mouse",
-    rent: 75,
-    deposit: 0,
-    quantity: 1,
-    type: "mouse",
-  },
-];
+import MobileVerification from "../components/checkout/MobileVerification";
+import AddressForm from "../components/checkout/AddressForm";
+import AddressPreview from "../components/checkout/AddressPreview";
+import { productscheckout } from "../data/DummyData";
+import { getCheckoutSnapshot, getServerSnapshot, subscribeToCheckout, updateCheckout } from "../utils/cartstorage/checkoutStorage";
 
 function Page() {
-  const [activeStep, setActiveStep] = useState(1);
+  const checkoutData = useSyncExternalStore(
+    subscribeToCheckout,
+    getCheckoutSnapshot,
+    getServerSnapshot,
+  );
+
+  const { activeStep, verifiedMobile, submittedAddress } = checkoutData;
+
+  // Other states
   const [coupon, setCoupon] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(false);
-  const [cartItems, setCartItems] = useState(products);
+  const [cartItems, setCartItems] = useState(productscheckout);
+  const [showRentalDetails, setShowRentalDetails] = useState(false);
 
+  // Functions
   const monthlyRent = cartItems.reduce(
     (total, item) => total + item.rent * item.quantity,
     0,
@@ -64,43 +57,54 @@ function Page() {
             { id: 1, label: "Checkout" },
             { id: 2, label: "Verification" },
             { id: 3, label: "Address/Payment" },
-          ].map((step, index) => (
-            <div key={step.id} className="flex flex-1 items-center last:flex-none">
-              <button
-                type="button"
-                onClick={() => setActiveStep(step.id)}
-                className="flex shrink-0 items-center gap-2.5"
+          ].map((step, index) => {
+            const isActive = activeStep === step.id;
+
+            const isCompleted =
+              (step.id === 1 && activeStep >= 2) ||
+              (step.id === 2 && !!verifiedMobile);
+
+            return (
+              <div
+                key={step.id}
+                className="flex flex-1 items-center last:flex-none"
               >
-                <span
-                  className={`flex size-9 items-center justify-center rounded-full text-sm font-semibold ${
-                    activeStep === step.id
-                      ? "bg-brand-dark text-white"
-                      : "bg-[#dedede] text-text-primary"
-                  }`}
-                >
-                  {activeStep > step.id ? (
-                    <Check size={18} />
-                  ) : (
-                    step.id
-                  )}
-                </span>
+                <div className="flex shrink-0 items-center gap-2.5">
+                  <span
+                    className={`flex size-9 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-300 ${
+                      isCompleted
+                        ? "bg-brand-dark text-white"
+                        : isActive
+                          ? "bg-[#dedede] text-text-primary"
+                          : "bg-[#eeeeee] text-[#999999]"
+                    }`}
+                  >
+                    {step.id}
+                  </span>
 
-                <span
-                  className={`hidden text-sm sm:block ${
-                    activeStep === step.id
-                      ? "text-brand-dark"
-                      : "text-text-primary"
-                  }`}
-                >
-                  {step.label}
-                </span>
-              </button>
+                  <span
+                    className={`hidden text-sm sm:block ${
+                      isCompleted
+                        ? "text-brand-dark"
+                        : isActive
+                          ? "text-text-primary"
+                          : "text-[#999999]"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                </div>
 
-              {index < 2 && (
-                <div className="mx-3 min-w-3 flex-1 border-t border-dashed border-[#cfcfcf] sm:mx-5" />
-              )}
-            </div>
-          ))}
+                {index < 2 && (
+                  <div
+                    className={`mx-3 min-w-3 flex-1 border-t border-dashed sm:mx-5 ${
+                      isCompleted ? "border-brand-dark" : "border-[#cfcfcf]"
+                    }`}
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Main Layout */}
@@ -174,11 +178,7 @@ function Page() {
                         <button
                           type="button"
                           className="font-medium text-brand-dark hover:underline"
-                          onClick={() =>
-                            document
-                              .getElementById("monthly-payable-details")
-                              ?.scrollIntoView({ behavior: "smooth" })
-                          }
+                          onClick={() => setShowRentalDetails(true)}
                         >
                           View Details
                         </button>
@@ -219,82 +219,111 @@ function Page() {
               </div>
 
               {/* Proceed */}
-              <div className="mt-9 border-t border-dashed border-[#dedede] pt-5">
-                <div className="flex justify-end">
-                  <div className="flex items-center gap-5 rounded-lg bg-[#292929] py-2 pl-4 pr-3 text-white">
-                    <div>
-                      <p className="text-[10px] font-medium">Payable Now</p>
-                      <p className="text-base font-bold">
-                        Rs. {payableNow}
-                      </p>
+              {activeStep !== 3 && (
+                <div className="mt-9 border-t border-dashed border-[#dedede] pt-5">
+                  <div className="flex justify-end">
+                    <div className="flex items-center gap-5 rounded-lg bg-[#292929] py-2 pl-4 pr-3 text-white">
+                      <div>
+                        <p className="text-[10px] font-medium">Payable Now</p>
+                        <p className="text-base font-bold">Rs. {payableNow}</p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => updateCheckout({ activeStep: 2 })}
+                        className="rounded-md bg-brand-dark px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand cursor-pointer"
+                      >
+                        Proceed
+                      </button>
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setActiveStep(2)}
-                      className="rounded-md bg-brand-dark px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand"
-                    >
-                      Proceed
-                    </button>
                   </div>
-                </div>
 
-                <p className="mt-3 text-right text-sm font-semibold italic text-text-secondary">
-                  Book your order now for just Rs. 99 (100% Refundable).
-                  Pay Rest on Confirmation
-                </p>
-              </div>
+                  <p className="mt-3 text-right text-sm font-semibold italic text-text-secondary">
+                    Book your order now for just Rs. 99 (100% Refundable). Pay
+                    Rest on Confirmation
+                  </p>
+                </div>
+              )}
             </section>
 
             {/* Verification Step */}
-            <button
-              type="button"
-              onClick={() => setActiveStep(2)}
-              className="flex w-full items-center justify-between rounded-xl bg-white p-5 text-left shadow-[0_0_16px_#00000012] transition hover:shadow-[0_0_18px_#0000001a]"
-            >
-              <span
-                className={`font-semibold ${
-                  activeStep === 2 ? "text-brand-dark" : "text-[#999999]"
-                }`}
-              >
-                Verify Your Mobile
-              </span>
+            {activeStep !== 3 && (
+              <div className="animate-step-reveal">
+                {activeStep === 2 ? (
+                  <MobileVerification
+                    onVerified={(mobile) => {
+                      updateCheckout({
+                        verifiedMobile: mobile,
+                        activeStep: 3,
+                      });
+                    }}
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    className="flex w-full opacity-60 items-center justify-between rounded-xl bg-white p-5 text-left shadow-[0_0_16px_#00000012] transition hover:shadow-[0_0_18px_#0000001a]"
+                  >
+                    <span className="font-medium! text-[#999999]">
+                      Verify Your Mobile
+                    </span>
 
-              <span
-                className={`flex size-9 items-center justify-center rounded-full text-sm ${
-                  activeStep === 2
-                    ? "bg-brand-dark text-white"
-                    : "bg-[#eeeeee] text-[#999999]"
-                }`}
-              >
-                2
-              </span>
-            </button>
+                    <span className="flex size-9 items-center justify-center rounded-full bg-[#eeeeee] text-sm text-[#999999]">
+                      2
+                    </span>
+                  </button>
+                )}
+              </div>
+            )}
 
             {/* Address Step */}
-            <button
-              type="button"
-              onClick={() => setActiveStep(3)}
-              className="flex w-full items-center justify-between rounded-xl bg-white p-5 text-left shadow-[0_0_16px_#00000012] transition hover:shadow-[0_0_18px_#0000001a]"
-            >
-              <span
-                className={`font-semibold ${
-                  activeStep === 3 ? "text-brand-dark" : "text-[#999999]"
-                }`}
-              >
-                Address
-              </span>
 
-              <span
-                className={`flex size-9 items-center justify-center rounded-full text-sm ${
-                  activeStep === 3
-                    ? "bg-brand-dark text-white"
-                    : "bg-[#eeeeee] text-[#999999]"
+            {activeStep === 3 ? (
+              <div key="address-step" className="animate-step-reveal">
+                {submittedAddress ? (
+                  <AddressPreview
+                    addressData={submittedAddress}
+                    onChange={() => updateCheckout({ submittedAddress: null })}
+                    onProceed={() => {
+                      console.log("Proceed to payment", submittedAddress);
+                    }}
+                  />
+                ) : (
+                  <AddressForm
+                    verifiedMobile={verifiedMobile}
+                    onSubmit={(formData) => {
+                      updateCheckout({ submittedAddress: formData });
+                    }}
+                  />
+                )}
+              </div>
+            ) : (
+              <button
+                type="button"
+                disabled={!verifiedMobile}
+                onClick={() => {
+                  if (verifiedMobile) {
+                    updateCheckout({ activeStep: 3 });
+                  }
+                }}
+                className={`flex w-full items-center justify-between rounded-xl bg-white p-5 text-left shadow-[0_0_16px_#00000012] transition ${
+                  verifiedMobile
+                    ? "hover:shadow-[0_0_18px_#0000001a]"
+                    : "opacity-60"
                 }`}
               >
-                3
-              </span>
-            </button>
+                <span
+                  className={`font-medium! ${
+                    activeStep === 3 ? "text-brand-dark" : "text-[#999999]"
+                  }`}
+                >
+                  Address
+                </span>
+
+                <span className="flex size-9 items-center justify-center rounded-full bg-[#eeeeee] text-sm text-[#999999]">
+                  3
+                </span>
+              </button>
+            )}
           </div>
 
           {/* Right Column */}
@@ -351,9 +380,9 @@ function Page() {
                 <div className="flex items-start gap-4">
                   <div className="flex size-16 shrink-0 items-center justify-center text-brand-dark">
                     {product.type === "laptop" ? (
-                      <Image src={productImage} alt="productImage"/>
+                      <Image src={productImage} alt="productImage" />
                     ) : (
-                      <Image src={mouseImage} alt="mouseImage"/>
+                      <Image src={mouseImage} alt="mouseImage" />
                     )}
                   </div>
 
@@ -427,9 +456,7 @@ function Page() {
 
             {cartItems.length === 0 && (
               <div className="rounded-xl bg-white p-6 text-center shadow-[0_0_16px_#00000012]">
-                <p className="text-sm text-text-muted">
-                  Your cart is empty.
-                </p>
+                <p className="text-sm text-text-muted">Your cart is empty.</p>
                 <Link
                   href="/shop"
                   className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark hover:underline"
@@ -441,6 +468,85 @@ function Page() {
           </aside>
         </div>
       </div>
+
+      {/* Rental Details Modal */}
+      {showRentalDetails && (
+        <div
+          className="fixed inset-0 z-999 flex items-center justify-center bg-black/40 p-4"
+          onClick={() => setShowRentalDetails(false)}
+        >
+          <div
+            className="w-full max-w-2xl rounded-xl bg-white shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-[#dedede] px-5 py-3">
+              <h2 className="text-xl! font-semibold! text-black">
+                Rental Details
+              </h2>
+
+              <button
+                type="button"
+                onClick={() => setShowRentalDetails(false)}
+                aria-label="Close rental details"
+                className="cursor-pointer text-black transition-colors hover:text-brand-dark"
+              >
+                <X size={23} />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="max-h-[70vh] overflow-y-auto px-5">
+              {cartItems.map((product) => (
+                <div key={product.id} className="py-5">
+                  <div className="flex items-center gap-4">
+                    <div className="relative flex size-28 shrink-0 items-center justify-center">
+                      <Image
+                        src={
+                          product.type === "laptop" ? productImage : mouseImage
+                        }
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                        sizes="112px"
+                      />
+                    </div>
+
+                    <h3 className="text-lg font-medium leading-6 text-black">
+                      {product.name}
+                    </h3>
+                  </div>
+
+                  {/* Recurring Rental */}
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <span className="text-base text-text-secondary">
+                      Recurring Rental
+                    </span>
+
+                    <span className="text-base font-semibold text-brand-dark">
+                      Rs.{" "}
+                      {(product.rent * product.quantity).toLocaleString(
+                        "en-IN",
+                      )}
+                    </span>
+                  </div>
+
+                  {/* Delivery Time */}
+                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#dedede] pt-5">
+                    <span className="text-sm text-text-secondary">
+                      Estimated Delivery Time
+                    </span>
+
+                    <span className="text-sm font-medium text-text-secondary">
+                      3rd November, 2026
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

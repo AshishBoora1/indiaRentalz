@@ -83,3 +83,18 @@ export interface EnterpriseCtaFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+export interface AddressData  {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  pincode: string;
+};
+
+export interface CheckoutData {
+  activeStep: number;
+  verifiedMobile: string;
+  submittedAddress: AddressData | null;
+};

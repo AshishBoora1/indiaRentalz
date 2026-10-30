@@ -373,3 +373,23 @@ export const faqs = [
       "You can contact the IndiaRENTALZ team through the contact options available on our website. Share your product requirements, quantity, location, and preferred rental duration so the team can assist you.",
   },
 ];
+
+
+export const productscheckout = [
+  {
+    id: 1,
+    name: "Laptop i3 8th/10th Gen-8GB RAM-256 GB SSD-14/15 inch screen",
+    rent: 1600,
+    deposit: 7500,
+    quantity: 1,
+    type: "laptop",
+  },
+  {
+    id: 2,
+    name: "Logitech M221 Wireless Mouse",
+    rent: 75,
+    deposit: 0,
+    quantity: 1,
+    type: "mouse",
+  },
+];
