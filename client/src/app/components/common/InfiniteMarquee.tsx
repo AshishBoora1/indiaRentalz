@@ -1,4 +1,3 @@
-
 "use client";
 
 import Marquee from "react-fast-marquee";
@@ -15,7 +14,7 @@ export default function InfiniteMarquee({
   children,
   speed = 40,
   direction = "left",
-  pauseOnHover = false,
+  pauseOnHover = true,
 }: InfiniteMarqueeProps) {
   return (
     <Marquee

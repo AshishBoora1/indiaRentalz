@@ -176,14 +176,16 @@ function Header() {
           </button>
 
           <div className="relative inline-block max-md:hidden">
-            <ShoppingCart
-              size={24}
-              className="text-text-primary scale-x-[-1]"
-            />
+            <Link href={"/cart"}>
+              <ShoppingCart
+                size={24}
+                className="text-text-primary scale-x-[-1]"
+              />
 
-            <div className="step-circle h-5 w-5 text-[0.7rem] -right-3 -top-3 absolute">
-              1
-            </div>
+              <div className="step-circle h-5 w-5 text-[0.7rem] -right-3 -top-3 absolute">
+                1
+              </div>
+            </Link>
           </div>
 
           <div className="max-md:hidden">
@@ -197,6 +199,7 @@ function Header() {
 
           <Link
             href="/enterprise"
+            target="_blank"
             className="btn-primary flex text-xs sm:text-base! px-4 py-2.5 sm:py-1.5 font-roboto items-center gap-1 rounded-full font-normal capitalize"
           >
             <UsersRound size={17} className="font-normal" />

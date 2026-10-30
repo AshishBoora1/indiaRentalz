@@ -1,13 +1,16 @@
+
 import type { Metadata } from "next";
 import { Inter, Poppins, Roboto } from "next/font/google";
+
 import "./globals.css";
 import "./css/headingSize.css";
 import "./css/slider.css";
-import ScrollAnimation from "./components/common/ScrollAnimation";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Header from "./components/common/Header";
-import Footer from "./components/common/Footer";
+
+import ScrollAnimation from "./components/common/ScrollAnimation";
+import ConditionalLayout from "./components/common/ConditionalLayout";
 import { AppProvider } from "./context/AppContext";
 
 const poppins = Poppins({
@@ -25,7 +28,7 @@ const roboto = Roboto({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700" , "800" , "900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +37,9 @@ export const metadata: Metadata = {
     "IndiaRENTALZ provide Laptops, Desktops, Macbooks, Servers, Printers and Audio Video Equipment on rental basis | Rental Simplified with PAN India Reach.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -42,11 +47,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <ScrollAnimation />
+
         <AppProvider>
-          <Header />
-          {children}
+          <ConditionalLayout>{children}</ConditionalLayout>
         </AppProvider>
-        <Footer />
       </body>
     </html>
   );

@@ -61,3 +61,25 @@ export interface AddOnsPopupProps {
   onClose: () => void;
   onContinue: (selectedAddons: AddOn[]) => void;
 };
+
+export interface EnterpriseBusinessPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  image?: string;
+  description?: string;
+}
+
+export interface Business {
+  title: string;
+  subtitle: string;
+  modalTitle: string;
+  image: StaticImageData;
+  description: string;
+};
+
+
+export interface EnterpriseCtaFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
